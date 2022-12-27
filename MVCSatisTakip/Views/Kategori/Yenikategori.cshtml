@@ -1,0 +1,18 @@
+﻿@model MVCSatisTakip.Models.tbl_kategori
+@{
+    ViewBag.Title = "Yenikategori";
+}
+
+<form method="post" class="form-group">
+    <div>
+        <label>Kategori Adı</label>
+        @Html.TextBoxFor(m=>m.KategoriAd, new {@class="form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info">Kategori Ekle</button>
+    </div>
+
+
+
+</form>
+
