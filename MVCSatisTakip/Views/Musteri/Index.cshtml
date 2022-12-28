@@ -1,0 +1,47 @@
+﻿@using MVCSatisTakip.Models
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<tbl_musteri>
+@{
+    ViewBag.Title = "Index";
+}
+
+<table class="table table-bordered">
+
+    <thead>
+
+        <tr>
+            <th>MÜŞTERİ ID</th>
+            <th>MÜŞTERİ TC</th>
+            <th>MÜŞTERİ ADSOYAD</th>
+            <th>MÜŞTERİ MESLEK</th>
+            <th>MÜŞTERİ ŞEHİR</th>
+            <th>MÜŞTERİ TELNO</th>
+            <th>MÜŞTERİ ADRES</th>
+            <th>SİL</th>
+            <th>GÜNCELLE</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var mus in Model)
+        {
+            <tr>
+                <td>@mus.MusteriID</td>
+                <td>@mus.TC</td>
+                <td>@mus.MusteriAdsoyad</td>
+                <td>@mus.Meslek</td>
+                <td>@mus.Sehir</td>
+                <td>@mus.Telno</td>
+                <td>@mus.Adres</td>
+
+                <td><a href="/Musteri/Sil/@mus.MusteriID" class="btn btn-danger">SİL</a></td>
+                <td><a href="/Musteri/Musterigetir/@mus.MusteriID" class="btn btn-info">GÜNCELLE</a></td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+<a href="/Musteri/Musteriekle/" class="btn btn-info">YENİ MÜŞTERİ EKLE</a>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+

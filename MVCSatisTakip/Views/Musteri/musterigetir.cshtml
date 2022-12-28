@@ -1,0 +1,33 @@
+﻿@model MVCSatisTakip.Models.tbl_musteri
+@{
+    ViewBag.Title = "musterigetir";
+}
+
+<h2>Müşteri Güncelle </h2>
+@using (Html.BeginForm("Guncelle", "Musteri", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.MusteriID)
+        @Html.TextBoxFor(m => m.MusteriID, new { @class = "form-control", @readonly = "readonly" })
+
+        @Html.LabelFor(m => m.TC)
+        @Html.TextBoxFor(m => m.TC, new { @class = "form-control" })
+        @Html.LabelFor(m => m.MusteriAdsoyad)
+        @Html.TextBoxFor(m => m.MusteriAdsoyad, new { @class = "form-control" })
+        @Html.LabelFor(m => m.Meslek)
+        @Html.TextBoxFor(m => m.Meslek, new { @class = "form-control" })
+        @Html.LabelFor(m => m.Sehir)
+        @Html.TextBoxFor(m => m.Sehir, new { @class = "form-control" })
+        @Html.LabelFor(m => m.Telno)
+        @Html.TextBoxFor(m => m.Telno, new { @class = "form-control" })
+        @Html.LabelFor(m => m.Adres)
+        @Html.TextBoxFor(m => m.Adres, new { @class = "form-control" })
+    </div>
+
+    <div style="margin-top:15px">
+        <button class="btn btn-info">Müşteri Güncelle</button>
+    </div>
+}
+
+
+

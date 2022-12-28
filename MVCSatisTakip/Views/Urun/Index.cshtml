@@ -1,0 +1,58 @@
+﻿@using MVCSatisTakip.Models
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<tbl_urun>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>ÜRÜNLERİMİZ</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(m => m[0].Urunad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m[0].Marka)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m[0].UrunFiyat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m[0].UrunStok)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m[0].tbl_kategori.KategoriAd)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Urunad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marka)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UrunFiyat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UrunStok)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tbl_kategori.KategoriAd)
+            </td>
+          
+            <td><a href="/Urun/Sil/@item.UrunID" class="btn btn-danger">SİL</a></td>
+            <td><a href="/Urun/Urungetir/@item.UrunID" class="btn btn-info">GÜNCELLE</a></td>
+            
+        </tr>
+    }
+
+</table>
+<a href="/Urun/Urunekle/" class="btn btn-info">YENİ ÜRÜN EKLE</a>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))

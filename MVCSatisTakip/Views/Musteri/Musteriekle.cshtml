@@ -1,0 +1,31 @@
+﻿@model MVCSatisTakip.Models.tbl_musteri
+@{
+    ViewBag.Title = "Musteriekle";
+}
+
+<form method="post" class="form-group">
+    <div>
+        <label>Müşteri TC</label>
+        @Html.TextBoxFor(m => m.TC, new { @class = "form-control" })
+
+        <label>Müşteri Adı Soyadı</label>
+        @Html.TextBoxFor(m => m.MusteriAdsoyad, new { @class = "form-control" })
+
+        <label>Müşteri Meslek </label>
+        @Html.TextBoxFor(m => m.Meslek, new { @class = "form-control" })
+        <label>Müşteri Şehir </label>
+        @Html.TextBoxFor(m => m.Sehir, new { @class = "form-control" })
+        <label>Müşteri Telefon</label>
+        @Html.TextBoxFor(m => m.Telno, new { @class = "form-control" })
+        <label>Müşteri Adres</label>
+        @Html.TextBoxFor(m => m.Adres, new { @class = "form-control" })
+
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info">Müşteri Ekle</button>
+    </div>
+
+
+
+</form>
+
