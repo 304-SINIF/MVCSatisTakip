@@ -3,6 +3,7 @@ using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Web.Mvc;
 
@@ -56,6 +57,44 @@ namespace MVCSatisTakip.Controllers
                 return RedirectToAction("Index");
             }
 
+        
+
+        }
+        public ActionResult Sil(int id)
+        {
+            var urun =db.tbl_urun.Find(id);
+            db.tbl_urun.Remove(urun);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult urungetir(int id)
+        {
+            var urun = db.tbl_urun.Find(id);
+
+            List<SelectListItem> urungetir = (from i in db.tbl_kategori.ToList()
+                                                select new SelectListItem
+                                                {
+                          Text = i.KategoriAd,
+                          Value = i.KategoriID.ToString()
+                                                }).ToList();
+
+            ViewBag.urun = urungetir;
+            return View("urungetir",urun);
+
+        }
+
+        public ActionResult Guncelle(tbl_urun p)
+        {
+            var urn = db.tbl_urun.Find(p.UrunID);
+            urn.Urunad = p.Urunad;
+            urn.Marka = p.Marka;
+            urn.UrunStok = p.UrunStok;
+            urn.UrunFiyat = p.UrunFiyat;
+            var ktg = db.tbl_kategori.Where(m => m.KategoriID == p.tbl_kategori.KategoriID).FirstOrDefault();
+            urn.Kategori=ktg.KategoriID;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

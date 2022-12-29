@@ -1,0 +1,46 @@
+﻿@using MVCSatisTakip.Models
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<tbl_satis>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Satışlar</h2>
+
+<table class="table table-bordered">
+
+    <thead>
+
+        <tr>
+            <th>SATIŞ ID</th>
+            <th>MÜŞTERİ </th>
+            <th>ÜRÜN</th>
+            <th>FİYAT</th>
+            <th>ADET</th>
+            <th>TARİH</th>
+            <th>SİL</th>
+            <th>GÜNCELLE</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sat in Model)
+        {
+            <tr>
+                <td>@sat.SatisID</td>
+                <td>@sat.tbl_musteri.MusteriAdsoyad</td>
+                <td>@sat.tbl_urun.Urunad</td>
+                <td>@sat.SatisFiyat</td>
+                <td>@sat.Satisadet</td>
+                <td>@sat.Satistarih</td>
+
+                <td><a href="/Satis/Sil/@sat.SatisID" class="btn btn-danger">SİL</a></td>
+                <td><a href="/Satis/satisgetir/@sat.SatisID" class="btn btn-info">GÜNCELLE</a></td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+<a href="/Satis/Yenisatis/" class="btn btn-info">YENİ SATIŞ EKLE</a>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
