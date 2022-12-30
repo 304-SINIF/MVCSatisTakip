@@ -8,7 +8,7 @@
 
 <h2>Satışlar</h2>
 
-<table class="table table-bordered">
+<table id="tbl" class="table table-bordered">
 
     <thead>
 
@@ -44,3 +44,17 @@
 </table>
 <a href="/Satis/Yenisatis/" class="btn btn-info">YENİ SATIŞ EKLE</a>
 @Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+
+
+
+<script>
+
+    $('#tbl').dataTable();
+
+
+
+</script>

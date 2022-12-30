@@ -6,53 +6,79 @@
 @{
     ViewBag.Title = "Index";
 }
+@*@using (Html.BeginForm("Index", "Urun", FormMethod.Get))
+    {
+        <p>Aranacak Ürün Adı:@Html.TextBox("p")</p>
+        <input type="submit" value="Ara" />
+    }*@
 
 <h2>ÜRÜNLERİMİZ</h2>
-<table class="table table-bordered">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(m => m[0].Urunad)
-        </th>
-        <th>
-            @Html.DisplayNameFor(m => m[0].Marka)
-        </th>
-        <th>
-            @Html.DisplayNameFor(m => m[0].UrunFiyat)
-        </th>
-        <th>
-            @Html.DisplayNameFor(m => m[0].UrunStok)
-        </th>
-        <th>
-            @Html.DisplayNameFor(m => m[0].tbl_kategori.KategoriAd)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table id="tbl" class="table table-bordered">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Urunad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Marka)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UrunFiyat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UrunStok)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.tbl_kategori.KategoriAd)
-            </td>
-          
-            <td><a href="/Urun/Sil/@item.UrunID" class="btn btn-danger">SİL</a></td>
-            <td><a href="/Urun/Urungetir/@item.UrunID" class="btn btn-info">GÜNCELLE</a></td>
-            
+            <th>
+                Ürün Ad
+            </th>
+            <th>
+               Marka
+            </th>
+            <th>
+               Fiyat
+            </th>
+            <th>
+               Stok
+            </th>
+            <th>
+               KategoriAd
+            </th>
+            <th></th>
+            <th></th>
         </tr>
-    }
+    </thead>
+    <tbody>
 
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                   @item.Urunad
+                </td>
+                <td>
+                    @item.Marka
+                </td>
+                <td>
+                    @item.UrunFiyat
+                </td>
+                <td>
+                    @item.UrunStok
+                </td>
+                <td>
+                    @item.tbl_kategori.KategoriAd
+                </td>
+
+                <td><a href="/Urun/Sil/@item.UrunID" class="btn btn-danger">SİL</a></td>
+                <td><a href="/Urun/Urungetir/@item.UrunID" class="btn btn-info">GÜNCELLE</a></td>
+
+            </tr>
+
+        }
+    </tbody>
 </table>
 <a href="/Urun/Urunekle/" class="btn btn-info">YENİ ÜRÜN EKLE</a>
 @Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+
+
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+
+
+
+<script>
+
+    $('#tbl').dataTable();
+
+
+
+</script>
