@@ -93,5 +93,53 @@ namespace MVCSatisTakip.Controllers
             }
             return View(s);
         }
+
+        public ActionResult satisgetir(int id)
+        {
+            var a = db.tbl_satis.Find(id);
+            List<SelectListItem> musteriler = (from i in db.tbl_musteri.ToList()
+                                               select new SelectListItem
+                                               {
+                                      Text = i.MusteriAdsoyad,
+                                  Value = i.MusteriID.ToString()
+                                               }).ToList();
+
+            List<SelectListItem> urunler = (from i in db.tbl_urun.ToList()
+                                            select new SelectListItem
+                                            {
+                                    Text = i.Urunad,
+                                    Value = i.UrunID.ToString()
+                                            }).ToList();
+
+
+            ViewBag.mus = musteriler;
+            ViewBag.urn = urunler;
+
+            return View("satisgetir",a);
+        }
+
+        public ActionResult Guncelle(tbl_satis p1)
+        {
+            var sts = db.tbl_satis.Find(p1.SatisID);
+            var must = db.tbl_musteri.Where(x => x.MusteriID == p1.tbl_musteri.MusteriID).FirstOrDefault();
+            sts.Musteri = must.MusteriID; // değişen
+
+            var urn = db.tbl_urun.Where(x => x.UrunID == p1.tbl_urun.UrunID).FirstOrDefault();
+            sts.Urun = urn.UrunID; //değişen
+            sts.Satisadet = p1.Satisadet;
+            sts.SatisFiyat = p1.SatisFiyat;
+            if (p1.Satistarih == null)
+                sts.Satistarih = DateTime.Now;
+            else { 
+            sts.Satistarih = p1.Satistarih;
+            }
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public int GetFiyat(int id)
+        {
+            int fiyat = (int)db.tbl_urun.Find(id).UrunFiyat;
+            return fiyat;
+        }
     }
 }

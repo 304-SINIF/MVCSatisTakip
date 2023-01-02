@@ -4,46 +4,62 @@
 }
 
 @using (Html.BeginForm("satisekle", "Satis", FormMethod.Post))
-            {
-           <button id="btn2" type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal1">Satış Yap</button>
-<div class="modal" id="Modal1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Satış Yapma Paneli</h2>
-            </div>
-            <form method="post" action="/Satis/satisekle/">
-                <div class="modal-body">
-                    <label>Müşteri</label>
-                    @Html.DropDownListFor(m => m.tbl_musteri.MusteriID, (List<SelectListItem>)ViewBag.mus, new { @class = "form-control" })
-                    <label>Ürün</label>
-                    @Html.DropDownListFor(m => m.tbl_urun.UrunID, (List<SelectListItem>)ViewBag.urn, new { @class = "form-control" })
-
-                    <label>Adet</label>
-                    @Html.TextBoxFor(m => m.Satisadet, new { @class = "form-control" })
-                    <label>Fiyat</label>
-                    @Html.TextBoxFor(m => m.SatisFiyat, new { @class = "form-control" })
-                    <label>Tarih</label>
-                    @Html.TextBoxFor(m => m.Satistarih, new { @class = "form-control", @type="date" })
-                    <br />
-                    <button class="btn btn-info">Satış Yap</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Vazgeç</button>
+{
+    <button id="btn2" type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal1">Satış Yap</button>
+    <div class="modal" id="Modal1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Satış Yapma Paneli</h2>
                 </div>
+                <form method="post" action="/Satis/satisekle/">
+                    <div class="modal-body">
+                        <label>Müşteri</label>
+                        @Html.DropDownListFor(m => m.tbl_musteri.MusteriID, (List<SelectListItem>)ViewBag.mus, new { @class = "form-control" })
+                        <label>Ürün</label>
+                        @Html.DropDownListFor(m => m.tbl_urun.UrunID, (List<SelectListItem>)ViewBag.urn, new { @class = "form-control" })
+
+                        <label>Adet</label>
+                        @Html.TextBoxFor(m => m.Satisadet, new { @class = "form-control", onchange = "hesapla()" })
+                        <label>Fiyat</label>
+                        @Html.TextBoxFor(m => m.SatisFiyat, new { @class = "form-control" })
+                        <label>Tarih</label>
+                        @Html.TextBoxFor(m => m.Satistarih, new { @class = "form-control", @type = "date" })
+                        <br />
+                        <button class="btn btn-info">Satış Yap</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Vazgeç</button>
+                    </div>
 
 
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-            }
+}
 
 <style>
-    #btn2{
-        margin-left:800px;
-        margin-top:20px;
+    #btn2 {
+        margin-left: 800px;
+        margin-top: 20px;
     }
 
     body {
         background-image: url('../../satis.png');
     }
 </style>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    var fiyat = $("#SatisFiyat")
+    function hesapla() {
+        var urunId = $("#tbl_urun_UrunID option:selected").val()
+        $.getJSON("/satis/getFiyat/" + urunId, function (data) {
+            var adet = $("#Satisadet")
+            if (!isNaN(adet.val())) {
+                fiyat.val(adet.val()*data)
+            }
+        })
+        
+    }
+    
+</script>

@@ -1,0 +1,28 @@
+﻿@model MVCSatisTakip.Models.tbl_satis
+@{
+    ViewBag.Title = "satisgetir";
+}
+
+@using (Html.BeginForm("Guncelle", "Satis", FormMethod.Post))
+            {
+                <div class="form-group">
+                    @Html.LabelFor(m => m.SatisID)
+                    @Html.TextBoxFor(m => m.SatisID, new { @class = "form-control", @readonly = "readonly" })
+                    <label>Müşteri</label>
+                    @Html.DropDownListFor(m => m.tbl_musteri.MusteriID, (List<SelectListItem>)ViewBag.mus, new { @class = "form-control" })
+                    <label>Ürün</label>
+                    @Html.DropDownListFor(m => m.tbl_urun.UrunID, (List<SelectListItem>)ViewBag.urn, new { @class = "form-control" })
+
+                    <label>Adet</label>
+                    @Html.TextBoxFor(m => m.Satisadet, new { @class = "form-control" })
+                    <label>Fiyat</label>
+                    @Html.TextBoxFor(m => m.SatisFiyat, new { @class = "form-control" })
+                    <label>Tarih</label>
+                    @Html.TextBoxFor(m => m.Satistarih, new { @class = "form-control",@type="date" })
+                </div>
+                <div style="margin-top:15px;">
+
+                    <button type="submit" class="btn btn-info">Satış Güncelle</button>
+                </div>
+            }
+
