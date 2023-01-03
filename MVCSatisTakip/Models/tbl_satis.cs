@@ -11,12 +11,15 @@ namespace MVCSatisTakip.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tbl_satis
     {
         public int SatisID { get; set; }
         public Nullable<decimal> SatisFiyat { get; set; }
+        [Required(ErrorMessage = "Girilmesi zorunlu alan")]
         public Nullable<int> Satisadet { get; set; }
+        [Required(ErrorMessage = "Girilmesi zorunlu alan")]
         public Nullable<System.DateTime> Satistarih { get; set; }
         public Nullable<int> Urun { get; set; }
         public Nullable<int> Musteri { get; set; }

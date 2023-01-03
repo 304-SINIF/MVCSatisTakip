@@ -34,8 +34,9 @@
                 <td>@mus.Telno</td>
                 <td>@mus.Adres</td>
 
-                <td><a href="/Musteri/Sil/@mus.MusteriID" class="btn btn-danger">SİL</a></td>
+                <td><a href="/Musteri/Sil/@mus.MusteriID" class=" btn btn-danger" id="sil">SİL</a></td>
                 <td><a href="/Musteri/Musterigetir/@mus.MusteriID" class="btn btn-info">GÜNCELLE</a></td>
+
             </tr>
         }
 
@@ -43,11 +44,14 @@
 
 </table>
 <a href="/Musteri/Musteriekle/" class="btn btn-info">YENİ MÜŞTERİ EKLE</a>
+
 @Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
 
 <script src="~/Scripts/jquery-3.4.1.js"></script>
 <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
 <link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+
+
 
 
 
@@ -58,3 +62,7 @@
 
 
 </script>
+
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+

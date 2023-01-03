@@ -20,11 +20,15 @@
                         @Html.DropDownListFor(m => m.tbl_urun.UrunID, (List<SelectListItem>)ViewBag.urn, new { @class = "form-control" })
 
                         <label>Adet</label>
-                        @Html.TextBoxFor(m => m.Satisadet, new { @class = "form-control", onchange = "hesapla()" })
+                        @Html.TextBoxFor(m => m.Satisadet, new { @class = "form-control", onkeypress = "hesapla()" })
+                        @Html.ValidationMessageFor(m => m.Satisadet, "", new { @style = "color:red" })
+                        <br />
                         <label>Fiyat</label>
                         @Html.TextBoxFor(m => m.SatisFiyat, new { @class = "form-control" })
                         <label>Tarih</label>
                         @Html.TextBoxFor(m => m.Satistarih, new { @class = "form-control", @type = "date" })
+                        @Html.ValidationMessageFor(m => m.Satistarih, "", new { @style = "color:red" })
+                        <br />
                         <br />
                         <button class="btn btn-info">Satış Yap</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Vazgeç</button>
@@ -39,8 +43,9 @@
 
 <style>
     #btn2 {
-        margin-left: 800px;
-        margin-top: 20px;
+      position:absolute;
+      right:20px;
+      margin-top:20px;
     }
 
     body {

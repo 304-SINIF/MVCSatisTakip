@@ -6,19 +6,31 @@
 <form method="post" class="form-group">
     <div>
         <label>Müşteri TC</label>
-        @Html.TextBoxFor(m => m.TC, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.TC, new { @class = "form-control", @type = "number" })
+        @Html.ValidationMessageFor(m => m.TC, "", new { @style = "color:red" })
+        <br />
 
         <label>Müşteri Adı Soyadı</label>
         @Html.TextBoxFor(m => m.MusteriAdsoyad, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.MusteriAdsoyad, "", new { @style = "color:red" })
+        <br />
 
         <label>Müşteri Meslek </label>
         @Html.TextBoxFor(m => m.Meslek, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Meslek, "", new { @style = "color:red" })
+        <br />
         <label>Müşteri Şehir </label>
         @Html.TextBoxFor(m => m.Sehir, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Sehir, "", new { @style = "color:red" })
+        <br />
         <label>Müşteri Telefon</label>
         @Html.TextBoxFor(m => m.Telno, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Telno, "", new { @style = "color:red" })
+        <br />
         <label>Müşteri Adres</label>
         @Html.TextBoxFor(m => m.Adres, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Adres, "", new { @style = "color:red" })
+        <br />
 
     </div>
     <div style="margin-top:15px">

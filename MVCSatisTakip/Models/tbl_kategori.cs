@@ -11,7 +11,8 @@ namespace MVCSatisTakip.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tbl_kategori
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,6 +22,8 @@ namespace MVCSatisTakip.Models
         }
     
         public int KategoriID { get; set; }
+
+        [Required(ErrorMessage ="Kategori adı boş bırakılamaz")]
         public string KategoriAd { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -9,17 +9,25 @@
     <div>
         <label>Ürün Ad</label>
         @Html.TextBoxFor(m => m.Urunad, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Urunad, "", new { @style = "color:red" })
+        <br />
 
         <label>Marka</label>
         @Html.TextBoxFor(m => m.Marka, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Marka, "", new { @style = "color:red" })
+        <br />
 
         <label>Fiyat </label>
         @Html.TextBoxFor(m => m.UrunFiyat, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.UrunFiyat, "", new { @style = "color:red" })
+        <br />
         <label>Stok </label>
         @Html.TextBoxFor(m => m.UrunStok, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.UrunStok, "", new { @style = "color:red" })
+        <br />
         <label>Kategori</label>
-        @Html.DropDownListFor(m => m.tbl_kategori.KategoriID,(List<SelectListItem>)ViewBag.ktgr, new { @class = "form-control" })
-       
+        @Html.DropDownListFor(m => m.tbl_kategori.KategoriID, (List<SelectListItem>)ViewBag.ktgr, new { @class = "form-control" })
+
 
     </div>
     <div style="margin-top:15px">

@@ -11,7 +11,8 @@ namespace MVCSatisTakip.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tbl_urun
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,9 +22,13 @@ namespace MVCSatisTakip.Models
         }
     
         public int UrunID { get; set; }
+        [Required(ErrorMessage = "Girilmesi zorunlu alan")]
         public string Urunad { get; set; }
+        [Required(ErrorMessage = "Girilmesi zorunlu alan")]
         public string Marka { get; set; }
+        [Required(ErrorMessage = "Girilmesi zorunlu alan")]
         public Nullable<decimal> UrunFiyat { get; set; }
+        [Required(ErrorMessage = "Girilmesi zorunlu alan")]
         public Nullable<int> UrunStok { get; set; }
         public Nullable<int> Kategori { get; set; }
     

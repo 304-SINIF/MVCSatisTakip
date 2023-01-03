@@ -11,7 +11,8 @@ namespace MVCSatisTakip.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tbl_musteri
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,11 +22,19 @@ namespace MVCSatisTakip.Models
         }
     
         public int MusteriID { get; set; }
+        [Required(ErrorMessage = "Girilmesi zorunlu alan")]
         public string MusteriAdsoyad { get; set; }
+        [Required(ErrorMessage = "Girilmesi zorunlu alan")]
+        [Phone(ErrorMessage ="Telefon numarası girilmelidir")]
         public string Telno { get; set; }
+        [Required(ErrorMessage ="Girilmesi zorunlu alan")]
+        [StringLength(11,MinimumLength =11,ErrorMessage ="TC 11 hane olmalıdır")]
         public string TC { get; set; }
+        [Required(ErrorMessage = "Girilmesi zorunlu alan")]
         public string Adres { get; set; }
+        [Required(ErrorMessage = "Girilmesi zorunlu alan")]
         public string Meslek { get; set; }
+        [Required(ErrorMessage = "Girilmesi zorunlu alan")]
         public string Sehir { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -51,37 +51,42 @@ namespace MVCSatisTakip.Controllers
         [HttpPost]
         public ActionResult satisekle(tbl_satis s)
         {
+            List<SelectListItem> musteriler = (from i in db.tbl_musteri.ToList()
+                                               select new SelectListItem
+                                               {
+                                                   Text = i.MusteriAdsoyad,
+                                                   Value = i.MusteriID.ToString()
+                                               }).ToList();
+
+            List<SelectListItem> urunler = (from i in db.tbl_urun.ToList()
+                                            select new SelectListItem
+                                            {
+                                                Text = i.Urunad,
+                                                Value = i.UrunID.ToString()
+                                            }).ToList();
+
+
+            ViewBag.mus = musteriler;
+            ViewBag.urn = urunler;
+
             var prod = db.tbl_urun.Find(s.tbl_urun.UrunID);
             if (s.Satisadet <= prod.UrunStok)
             {
                 if(s.Satisadet==null || s.SatisFiyat==null ||  s.Satistarih==null)
                 {
-                    List<SelectListItem> musteriler = (from i in db.tbl_musteri.ToList()
-                                                       select new SelectListItem
-                                                       {
-                                                           Text = i.MusteriAdsoyad,
-                                                           Value = i.MusteriID.ToString()
-                                                       }).ToList();
-
-                    List<SelectListItem> urunler = (from i in db.tbl_urun.ToList()
-                                                    select new SelectListItem
-                                                    {
-                                                        Text = i.Urunad,
-                                                        Value = i.UrunID.ToString()
-                                                    }).ToList();
-
-
-                    ViewBag.mus = musteriler;
-                    ViewBag.urn = urunler;
+                   
                     return View();
                 }
                 else
                 {
+
                  var must = db.tbl_musteri.Where(x => x.MusteriID == s.tbl_musteri.MusteriID).FirstOrDefault();
                  s.tbl_musteri = must;
 
                  var urn = db.tbl_urun.Where(x => x.UrunID == s.tbl_urun.UrunID).FirstOrDefault();
                     s.tbl_urun = urn;
+
+                  
                     db.tbl_satis.Add(s);
                     db.SaveChanges();
 
@@ -91,6 +96,9 @@ namespace MVCSatisTakip.Controllers
 
                 
             }
+           
+              
+           
             return View(s);
         }
 
